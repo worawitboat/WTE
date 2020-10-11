@@ -21,8 +21,8 @@ npm i -g yarn
 ### การติดตั้ง 
 
 ``` 
-git clone https://github.com/linnovate/mean
-cd mean
+git clone https://github.com/wichit2s/mean4thai
+cd mean4thai
 ```
 
 ### เริ่มพัฒนา
@@ -58,7 +58,7 @@ docker exec mongo36 mongo --version
 yarn install
 ```
 
-5. สั่งเริ่มพัฒนา ดูผลลัพธ์ได้ที่  [http://localhost:4040/](http://localhost:4040/)
+5. สั่งเริ่มพัฒนา ดูผลลัพธ์ได้ที่  http://localhost:4040/
 
 ``` 
 yarn start
