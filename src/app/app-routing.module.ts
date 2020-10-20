@@ -3,17 +3,24 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './shared/guards';
 import { HomeComponent } from './home/home.component';
-import { HeroComponent } from './hero/hero.component';
+import { MapComponent } from './map/map.component';
+import { ChooseTypeComponent } from './choose-type/choose-type.component';
+
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    //canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
-    path: 'hero',
-    component: HeroComponent,
+    path: 'map',
+    component: MapComponent,
+
+  },
+  {
+    path: 'choose-type',
+    component: ChooseTypeComponent,
   },
   {
     path: 'auth',
