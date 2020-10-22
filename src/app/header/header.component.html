@@ -35,9 +35,13 @@
             <ul class="nav navbar-nav">
                 <li><a href="/choose-type">Home</a></li>
                 <li><a class="links side" routerLink="/auth/login" *ngIf="!user">Login </a></li>
-                <li><div style="margin-top: 22px;">
-                  <a class="links side" *ngIf="user" [matMenuTriggerFor]="menu" >
-                    <mat-icon style="margin-top: 5px;">account_circle</mat-icon><p>{{ user.fullname }}</p>
+                <li><div style="position: relative;
+                    left: 15px;
+                    top: 30px;">
+                  <a  *ngIf="user" [matMenuTriggerFor]="menu">
+                    
+                    {{ user.fullname }}
+
                   </a>
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item *ngIf="user?.isAdmin" routerLink="/admin">admin</button>
@@ -66,7 +70,7 @@ html {
 
 .navbar {
     border: 0;
-    z-index: 9999;
+    z-index: 0;
     letter-spacing: 4px;
 
 }

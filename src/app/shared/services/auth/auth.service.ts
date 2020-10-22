@@ -4,20 +4,33 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, EMPTY } from 'rxjs';
 import { tap, pluck } from 'rxjs/operators';
 
-import { User } from '@app/shared/interfaces';
+import { User , Location } from '@app/shared/interfaces';
+
 
 import { TokenStorage } from './token.storage';
 
 interface AuthResponse {
   token: string;
   user: User;
+  place: Location;
 }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private user$ = new BehaviorSubject<User | null>(null);
+  private place$ = new BehaviorSubject<Location | null>(null);
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorage) {}
+
+  getLocation():Observable<Location> {
+    return this.http
+      .get<AuthResponse>('/api/location/all').pipe(
+        tap(({ place }) => {
+          this.setPlace(place);
+        }),
+      pluck('place')
+    );
+  }
 
   login(email: string, password: string): Observable<User> {
     return this.http
@@ -60,6 +73,11 @@ export class AuthService {
 
     this.user$.next(user);
     window.user = user;
+  }
+
+  setPlace(place: Location | null): void {
+    this.place$.next(place);
+    // window.place = place;
   }
 
   getUser(): Observable<User | null> {

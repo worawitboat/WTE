@@ -1,7 +1,9 @@
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Location } from '@angular/common';
+
+import { AuthService } from '@app/shared/services';
 
 declare const L: any;
 @Component({
@@ -121,9 +123,15 @@ export class MapComponent implements OnInit {
   focusName = {}
   focusDes = {}
 
-
-  constructor(private location: Location) { }
+// 
+  constructor(private location: Location, private authService: AuthService) { }
+  
   ngOnInit() {
+    this.authService.getLocation().subscribe(data => {
+      console.log(data);
+      
+    });
+
     if (!navigator.geolocation) {
       console.log('location is not supported');
     }
@@ -134,7 +142,7 @@ export class MapComponent implements OnInit {
         `lat: ${position.coords.latitude}, lng: ${position.coords.longitude}`
       );
 
-      console.log(this.food[this.ran]);
+      // console.log(this.food[this.ran]);
 
       this.mymap = L.map('map').setView(latLng, 13);
 
