@@ -33,11 +33,11 @@
         </div>
         <div class="collapse navbar-collapse navbar-right" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="http://localhost:4200/">Home</a></li>
+                <li><a href="/choose-type">Home</a></li>
                 <li><a class="links side" routerLink="/auth/login" *ngIf="!user">Login </a></li>
-                <li><div>
-                  <a class="links side" *ngIf="user" [matMenuTriggerFor]="menu">
-                    <mat-icon>account_circle</mat-icon>{{ user.fullname }}
+                <li><div style="margin-top: 22px;">
+                  <a class="links side" *ngIf="user" [matMenuTriggerFor]="menu" >
+                    <mat-icon style="margin-top: 5px;">account_circle</mat-icon><p>{{ user.fullname }}</p>
                   </a>
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item *ngIf="user?.isAdmin" routerLink="/admin">admin</button>
