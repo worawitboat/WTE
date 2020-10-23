@@ -5,11 +5,11 @@ const Location = require('../models/location.model');
 const locationSchema = Joi.object({
   name: Joi.string().required(),
   img: Joi.string().required(),
-  lat: Joi.number().required(),
-  lng: Joi.number().required(),
+  lat: Joi.string().required(),
+  lng: Joi.string().required(),
   des: Joi.string().required(),
   type: Joi.string().required()
-  
+
 })
 
 

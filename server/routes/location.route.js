@@ -7,7 +7,7 @@ module.exports = router;
 
 //router.use(passport.authenticate('jwt', { session: false }))
 
-router.route('/').post(asyncHandler(insert));
+router.route('/insert').post(asyncHandler(insert));
 router.route('/get/:sid(\d+)').get(asyncHandler(get));
 router.route('/all').get(asyncHandler(getAll));
 router.route('/search').get(asyncHandler(search));

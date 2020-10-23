@@ -5,6 +5,7 @@ import { AuthGuard } from './shared/guards';
 import { HomeComponent } from './home/home.component';
 import { MapComponent } from './map/map.component';
 import { ChooseTypeComponent } from './choose-type/choose-type.component';
+import { addlocationComponent } from './Addlocation/addlocation.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'choose-type',
     component: ChooseTypeComponent,
+  },
+  {
+    path: 'add-location',
+    component: addlocationComponent,
   },
   {
     path: 'auth',

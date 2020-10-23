@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthService } from './shared/services';
 import { MapComponent } from './map/map.component';
 import { ChooseTypeComponent } from './choose-type/choose-type.component';
+import { addlocationComponent } from './Addlocation/addlocation.component';
 // import { AgmCoreModule } from '@agm/core';
 
 export function appInitializerFactory(authService: AuthService) {
@@ -30,7 +31,7 @@ export function appInitializerFactory(authService: AuthService) {
     //    apiKey:'AIzaSyBJWuQmrf6UgrkGbMJF6-m1GwTZrazBFBo'
     // })
   ],
-  declarations: [AppComponent, HeaderComponent, HomeComponent, MapComponent, ChooseTypeComponent],
+  declarations: [AppComponent, HeaderComponent, HomeComponent, MapComponent, ChooseTypeComponent, addlocationComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

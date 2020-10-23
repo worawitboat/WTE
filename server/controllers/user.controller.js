@@ -21,3 +21,4 @@ async function insert(user) {
   delete user.password;
   return await new User(user).save();
 }
+

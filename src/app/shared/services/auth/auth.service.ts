@@ -28,6 +28,31 @@ export class AuthService {
       )
   }
 
+  addLocation(
+    name: string,
+    img: string,
+    lat: string,
+    lng: string,
+    des: string,
+    type: string,
+  ): Observable<Location> {
+    return this.http
+      .post('/api/location/insert', {
+        name,
+        img,
+        lat,
+        lng,
+        des,
+        type
+      })
+      .pipe(
+        tap(() => {
+
+        }),
+        pluck('place')
+      );
+  }
+
   login(email: string, password: string): Observable<User> {
     return this.http
       .post<AuthResponse>('/api/auth/login', { email, password })
