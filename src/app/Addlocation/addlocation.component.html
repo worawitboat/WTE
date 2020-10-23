@@ -25,13 +25,15 @@
             <label>StoreName</label>
 
             <input matInput type="text" formControlName="name" name="name" required />
+            <mat-error *ngIf="name.invalid">name invalid</mat-error>
 
           </li>
           <li class="form-list__row">
             <label>Image (URL ImageAddress only)</label>
             <div>
 
-              <input matInput type="text" formControlName="name" name="img" required />
+              <input matInput type="text" formControlName="img" name="img" required />
+
 
             </div>
           </li>
@@ -40,9 +42,9 @@
               <label>Infomation</label>
               <div class="form-list__input-inline">
 
-                <input matInput type="text" formControlName="name" name="lat" placeholder="lat" required />
+                <input matInput type="text" formControlName="lat" name="lat" placeholder="lat" required />
 
-                <input matInput type="text" formControlName="name" name="lng" placeholder="lng" required />
+                <input matInput type="text" formControlName="lng" name="lng" placeholder="lng" required />
 
               </div>
             </div>
@@ -51,17 +53,18 @@
                 StoreType
               </label>
 
-              <select matInput name="type" id="type">
+              <select matInput formControlName="type" name="type" id="type">
                 <option value="food">Food</option>
                 <option value="noodle">Noodle</option>
                 <option value="drink">Drink</option>
 
               </select>
+              <mat-error *ngIf="type.invalid">Password mismatch</mat-error>
 
             </div>
           </li>
           <li class='form-list__row'>
-            <input matInput type="text" name="des" placeholder="description" required />
+            <input matInput type="text" formControlName="des" name="des" placeholder="description" required />
           </li>
           <li>
             <button type="submit" class="button" (click)="insert()">submit</button>
