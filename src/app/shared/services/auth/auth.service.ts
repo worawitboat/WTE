@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, BehaviorSubject, EMPTY } from 'rxjs';
-import { tap, pluck } from 'rxjs/operators';
+import { tap, pluck, map } from 'rxjs/operators';
 
-import { User , Location } from '@app/shared/interfaces';
-
+import { User, Location } from '@app/shared/interfaces';
 
 import { TokenStorage } from './token.storage';
 
@@ -18,18 +17,15 @@ interface AuthResponse {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private user$ = new BehaviorSubject<User | null>(null);
-  private place$ = new BehaviorSubject<Location | null>(null);
 
-  constructor(private http: HttpClient, private tokenStorage: TokenStorage) {}
 
-  getLocation():Observable<Location> {
+  constructor(private http: HttpClient, private tokenStorage: TokenStorage) { }
+
+  getLocation() {
     return this.http
-      .get<AuthResponse>('/api/location/all').pipe(
-        tap(({ place }) => {
-          this.setPlace(place);
-        }),
-      pluck('place')
-    );
+      .get('/api/location/all').pipe(
+        map(res => res)
+      )
   }
 
   login(email: string, password: string): Observable<User> {
@@ -75,11 +71,6 @@ export class AuthService {
     window.user = user;
   }
 
-  setPlace(place: Location | null): void {
-    this.place$.next(place);
-    // window.place = place;
-  }
-
   getUser(): Observable<User | null> {
     return this.user$.asObservable();
   }
@@ -100,7 +91,7 @@ export class AuthService {
   signOut(): void {
     this.tokenStorage.signOut();
     this.setUser(null);
-    delete window.user;
+    window.user;
   }
 
   getAuthorizationHeaders() {
