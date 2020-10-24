@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {
   FormGroup,
   FormControl,
@@ -9,21 +10,21 @@ import {
 import { AuthService } from '@app/shared/services';
 
 @Component({
-  selector: 'app-addlocation',
-  templateUrl: './addlocation.component.html',
-  styleUrls: ['./addlocation.component.css']
+  selector: 'app-editlocation',
+  templateUrl: './editlocation.component.html',
+  styleUrls: ['./editlocation.component.css']
 })
-export class addlocationComponent implements OnInit {
+export class editlocationComponent implements OnInit {
+  data = history.state.data1999;
 
   constructor(private authService: AuthService) { }
-
   storeForm = new FormGroup({
-    name: new FormControl('',[Validators.required]),
-    img: new FormControl('',[Validators.required]),
-    lat: new FormControl('',[Validators.required]),
-    lng: new FormControl('',[Validators.required]),
-    type: new FormControl('',[Validators.required]),
-    des: new FormControl('',[Validators.required]),
+    name: new FormControl(this.data.name),
+    img: new FormControl(this.data.img),
+    lat: new FormControl(this.data.lat),
+    lng: new FormControl(this.data.lng),
+    type: new FormControl(this.data.type),
+    des: new FormControl(this.data.des),
   });
 
   get name(): AbstractControl {
@@ -50,22 +51,22 @@ export class addlocationComponent implements OnInit {
     return this.storeForm.get('des')!;
   }
 
-  insert(): void {
+  put(): void {
     if (this.storeForm.invalid) {
       return;
     }
 
     const { name, img, lat, lng, type, des } = this.storeForm.getRawValue();
 
-    this.authService.addLocation(name, img, lat, lng, des, type ).subscribe(data => {
-      console.log("store insert");
-      window.location.href = ('/add-location');
+    this.authService.updateLocation(this.data._id,name, img, lat, lng, des, type ).subscribe(data => {
+      console.log("store update");
+      window.location.href = ('/del-location');
 
     });
   }
 
   ngOnInit(): void {
-
+    console.log(history.state.data1999);
   }
 
 }

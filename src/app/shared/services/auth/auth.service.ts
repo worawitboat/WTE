@@ -21,6 +21,68 @@ export class AuthService {
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorage) { }
 
+  updateLocation(
+    id: string,
+    name: string,
+    img: string,
+    lat: string,
+    lng: string,
+    des: string,
+    type: string,
+  ) {
+    console.log(id);
+    console.log(name);
+    return this.http
+      .put('/api/location/update', {
+        id,
+        name,
+        img,
+        lat,
+        lng,
+        des,
+        type
+      }).pipe(
+        map(res => res)
+      )
+
+
+    // return this.http
+    //   .post('/api/location/update-place', {
+    //     id,
+    //     name,
+    //     img,
+    //     lat,
+    //     lng,
+    //     des,
+    //     type
+    //   })
+    //   .pipe(
+    //     tap(() => {
+
+    //     }),
+    //     pluck('place')
+    //   );
+  }
+
+  delLocation(
+    name: string,
+    lat: string,
+    lng: string,
+  ): Observable<Location> {
+    return this.http
+      .post('/api/location/search', {
+        name,
+        lat,
+        lng,
+      })
+      .pipe(
+        tap(() => {
+
+        }),
+        pluck('place')
+      );
+  }
+
   getLocation() {
     return this.http
       .get('/api/location/all').pipe(

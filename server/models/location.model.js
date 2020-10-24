@@ -9,7 +9,7 @@ const LocationSchema = new mongoose.Schema(
     img:      { type: String, required: true },
     lat:      { type: String, required: true },
     lng:      { type: String, required: true },
-    des:      { type: String, required: true },
+    des:      { type: String, required: false },
     type:     { type: String, required: true },
 
   },

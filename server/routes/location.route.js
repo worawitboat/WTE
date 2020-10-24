@@ -6,12 +6,18 @@ const router = express.Router();
 module.exports = router;
 
 //router.use(passport.authenticate('jwt', { session: false }))
-
+router.route('/update').put(asyncHandler(updatePlace));
 router.route('/insert').post(asyncHandler(insert));
 router.route('/get/:sid(\d+)').get(asyncHandler(get));
 router.route('/all').get(asyncHandler(getAll));
-router.route('/search').get(asyncHandler(search));
+router.route('/search').post(asyncHandler(search));
 
+
+async function updatePlace(req, res) {
+  console.log(req.body);
+  let place = await locationCtrl.update(req.body);
+  res.json(place);
+}
 
 async function insert(req, res) {
   let place = await locationCtrl.insert(req.body);
@@ -29,6 +35,7 @@ async function getAll(req, res) {
 }
 
 async function search(req, res) {
-  let result = await locationCtrl.search(req.params['key'], req.params['value']);
+  let result = await locationCtrl.search(req.body);
+  // let result = await locationCtrl.search(req.params['key'], req.params['value']);
   res.json(result);
 }

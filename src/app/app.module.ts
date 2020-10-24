@@ -15,6 +15,9 @@ import { AuthService } from './shared/services';
 import { MapComponent } from './map/map.component';
 import { ChooseTypeComponent } from './choose-type/choose-type.component';
 import { addlocationComponent } from './Addlocation/addlocation.component';
+import { dellocationComponent } from './Dellocation/dellocation.component';
+import { editlocationComponent } from './Editlocation/editlocation.component';
+
 // import { AgmCoreModule } from '@agm/core';
 
 export function appInitializerFactory(authService: AuthService) {
@@ -27,11 +30,12 @@ export function appInitializerFactory(authService: AuthService) {
     HttpClientModule,
     SharedModule,
     AppRoutingModule,
+
     // AgmCoreModule.forRoot({
     //    apiKey:'AIzaSyBJWuQmrf6UgrkGbMJF6-m1GwTZrazBFBo'
     // })
   ],
-  declarations: [AppComponent, HeaderComponent, HomeComponent, MapComponent, ChooseTypeComponent, addlocationComponent],
+  declarations: [AppComponent, HeaderComponent, HomeComponent, MapComponent, ChooseTypeComponent, addlocationComponent, dellocationComponent, editlocationComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

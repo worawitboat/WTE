@@ -1,0 +1,155 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container" ng-app="sortApp" ng-controller="mainController">
+  <div style="align-items: center; margin-top: 50px; margin-bottom: 20px;">
+    <h2>Edit Store</h2>
+  </div>
+
+  <table class="table table-bordered table-striped">
+
+    <thead>
+      <tr>
+        <td>
+          <a  ng-click="sortType = 'name'; sortReverse = !sortReverse">
+            StoreName
+            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a ng-click="sortType = 'fish'; sortReverse = !sortReverse">
+            Image
+            <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+            lat
+            <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+            lng
+            <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+            Description
+            <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+            Type
+            <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+            DeLStore
+            <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+            EDitStore
+            <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of Store">
+
+        <td>{{ data.name }}</td>
+        <td><img src={{data.img}} width="100" height="100"></td>
+        <td>{{ data.lat }}</td>
+        <td>{{ data.lng }}</td>
+        <td>{{ data.des }}</td>
+        <td>{{ data.type }}</td>
+        <td>
+          <button type="button" (click)="del(data)">Delete</button>
+        </td>
+
+        <td>
+          <button type="button" [routerLink]="['/edit-location']" [state]="{ data1999:data }">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+    <!-- <tbody>
+      <tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse | filter:searchFish">
+        <td>Phupha Noodle</td>
+        <td>https://img.wongnai.com/p/400x0/2019/08/02/d2620632b47d41a0a983387a7faace99.jpg</td>
+        <td>15.1217672</td>
+        <td>104.8908273</td>
+        <td><button type="submit" form="nameform" value="Submit">DELDATA</button></td>
+        <td><button type="submit" form="nameform" value="Submit">EDITDATA</button></td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse | filter:searchFish">
+        <td>WaWLwnLwn</td>
+        <td>https://www.sentangsedtee.com/wp-content/uploads/2019/11/75252804_2519441764836256_8842522662354812928_n.png</td>
+        <td>15.1186305</td>
+        <td>104.8987285</td>
+        <td><button type="submit" form="nameform" value="Submit">DELDATA</button></td>
+        <td><button type="submit" form="nameform" value="Submit">EDITDATA</button></td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse | filter:searchFish">
+        <td>Wanyen</td>
+        <td>https://img.kapook.com/u/2015/suppaporn/Ubon/mixubon.jpg</td>
+        <td>15.1217672</td>
+        <td>104.8908273</td>
+        <td><button type="submit" form="nameform" value="Submit">DELDATA</button></td>
+        <td><button type="submit" form="nameform" value="Submit">EDITDATA</button></td>
+      </tr>
+    </tbody><tbody>
+      <tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse | filter:searchFish">
+        <td>Phupha Noodle</td>
+        <td>https://img.wongnai.com/p/400x0/2019/08/02/d2620632b47d41a0a983387a7faace99.jpg</td>
+        <td>15.1217672</td>
+        <td>104.8908273</td>
+        <td><button type="submit" form="nameform" value="Submit">DELDATA</button></td>
+        <td><button type="submit" form="nameform" value="Submit">EDITDATA</button></td>
+      </tr>
+    </tbody><tbody>
+      <tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse | filter:searchFish">
+        <td>Phupha Noodle</td>
+        <td>https://img.wongnai.com/p/400x0/2019/08/02/d2620632b47d41a0a983387a7faace99.jpg</td>
+        <td>15.1217672</td>
+        <td>104.8908273</td>
+        <td><button type="submit" form="nameform" value="Submit">DELDATA</button></td>
+        <td><button type="submit" form="nameform" value="Submit">EDITDATA</button></td>
+      </tr>
+    </tbody><tbody>
+      <tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse | filter:searchFish">
+        <td>Phupha Noodle</td>
+        <td>https://img.wongnai.com/p/400x0/2019/08/02/d2620632b47d41a0a983387a7faace99.jpg</td>
+        <td>15.1217672</td>
+        <td>104.8908273</td>
+        <td><button type="submit" form="nameform" value="Submit">DELDATA</button></td>
+        <td><button type="submit" form="nameform" value="Submit">EDITDATA</button></td>
+      </tr>
+    </tbody> -->
+
+  </table>
+
+</div>
+<style>
+  body {
+    padding-top: 50px;
+  }
+</style>

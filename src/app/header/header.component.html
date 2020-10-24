@@ -34,7 +34,8 @@
         <div class="collapse navbar-collapse navbar-right" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="/choose-type">Home</a></li>
-                <li><a href="/add-location">Add location</a></li>
+                <li><a *ngIf="user" href="/add-location">Add location</a></li>
+                <li><a *ngIf="user" href="/del-location">Show location</a></li>
                 <li><a class="links side" routerLink="/auth/login" *ngIf="!user">Login </a></li>
                 <li><div style="position: relative;
                     left: 15px;
